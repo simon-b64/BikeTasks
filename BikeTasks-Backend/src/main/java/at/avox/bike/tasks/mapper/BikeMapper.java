@@ -18,6 +18,7 @@ public interface BikeMapper {
 
     BikeDto toDto(BikeEntity bikeEntity);
 
+    @Mapping(target = "id", ignore = true)
     void updateBike(@MappingTarget BikeEntity entity, BikeUpdateDto dto);
 
     default List<BikeDto> toDto(List<BikeEntity> bikeEntities) {

@@ -26,7 +26,7 @@ public class BikeService {
     }
 
     public BikeDto findBikeById(UUID id) {
-        var bike = findBikeEntityByIdOrThrow(id);
+        var bike = findEntityByIdOrThrow(id);
         return bikeMapper.toDto(bike);
     }
 
@@ -41,7 +41,7 @@ public class BikeService {
 
     @Transactional
     public BikeDto updateBike(UUID id, BikeUpdateDto bikeUpdateDto) {
-        var bike = findBikeEntityByIdOrThrow(id);
+        var bike = findEntityByIdOrThrow(id);
 
         bikeMapper.updateBike(bike, bikeUpdateDto);
         bikeRepository.save(bike);
@@ -51,11 +51,11 @@ public class BikeService {
 
     @Transactional
     public void deleteBike(UUID id) {
-        var bike = findBikeEntityByIdOrThrow(id);
+        var bike = findEntityByIdOrThrow(id);
         bikeRepository.delete(bike);
     }
 
-    private BikeEntity findBikeEntityByIdOrThrow(UUID id) {
+    public BikeEntity findEntityByIdOrThrow(UUID id) {
         return bikeRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Bike with id %s not found".formatted(id)));
     }
