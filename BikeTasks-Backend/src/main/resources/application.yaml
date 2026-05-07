@@ -5,3 +5,12 @@ spring:
     url:
     username:
     password:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
